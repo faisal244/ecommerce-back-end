@@ -13,7 +13,22 @@ const getAllProducts = async (req, res) => {
 	}
 };
 
-// const getProductById = async (req, res) => {};
+const getProductById = async (req, res) => {
+	try {
+		const data = await Product.findByPk(req.params.id);
+		if (data) {
+			return res.json({ success: true, data });
+		}
+		return res
+			.status(404)
+			.json({ success: false, error: "Product does not exist" });
+	} catch (err) {
+		logError("GET Products", err.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 
 // const getProductById = async (req, res) => {};
 
@@ -25,7 +40,7 @@ const getAllProducts = async (req, res) => {
 
 module.exports = {
 	getAllProducts,
-	// getProductById,
+	getProductById,
 	// createProduct,
 	// updateProduct,
 	// deleteProduct,
