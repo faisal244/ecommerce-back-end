@@ -32,7 +32,17 @@ const getCategoryById = async (req, res) => {
 };
 
 // create new category
-const createNewCategory = async (req, res) => {};
+const createNewCategory = async (req, res) => {
+	try {
+		await Category.create(req.body);
+		return res.json({ success: true, data: "Successfully Created category" });
+	} catch (error) {
+		logError("POST category", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 
 // update category
 const updateCategory = async (req, res) => {};
