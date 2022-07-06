@@ -14,7 +14,22 @@ const getAllCategories = async (req, res) => {
 };
 
 // get category by ID
-const getCategoryById = async (req, res) => {};
+const getCategoryById = async (req, res) => {
+	try {
+		const data = await Category.findByPk(req.params.id);
+		if (data) {
+			return res.json({ success: true, data });
+		}
+		return res
+			.status(404)
+			.json({ success: false, error: "Category does not exist" });
+	} catch (err) {
+		logError("GET categories", err.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 
 // create new category
 const createNewCategory = async (req, res) => {};
