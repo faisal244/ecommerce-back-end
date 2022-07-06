@@ -35,7 +35,10 @@ const getCategoryById = async (req, res) => {
 const createNewCategory = async (req, res) => {
 	try {
 		await Category.create(req.body);
-		return res.json({ success: true, data: "Successfully Created category" });
+		return res.status(200).json({
+			success: true,
+			data: "Successfully Created category",
+		});
 	} catch (error) {
 		logError("POST category", error.message);
 		return res
