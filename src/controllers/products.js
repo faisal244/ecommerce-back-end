@@ -94,12 +94,25 @@ const updateProduct = async (req, res) => {
 		});
 };
 
-// const deleteProduct = async (req, res) => {};
-
+const deleteProduct = async (req, res) => {
+	try {
+		await Product.destroy({
+			where: {
+				id: req.params.id,
+			},
+		});
+		return res.json({ success: true, data: "Successfully Deleted Product" });
+	} catch (error) {
+		logError("DELETE Product", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 module.exports = {
 	getAllProducts,
 	getProductById,
 	createProduct,
 	updateProduct,
-	// deleteProduct,
+	deleteProduct,
 };
