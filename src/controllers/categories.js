@@ -45,10 +45,38 @@ const createNewCategory = async (req, res) => {
 };
 
 // update category
-const updateCategory = async (req, res) => {};
+const updateCategory = async (req, res) => {
+	try {
+		await Category.update(req.body, {
+			where: {
+				id: req.params.id,
+			},
+		});
+		return res.json({ success: true, data: "Successfully Update Category" });
+	} catch (error) {
+		logError("UPDATE Category", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 
 // delete category
-const deleteCategory = async (req, res) => {};
+const deleteCategory = async (req, res) => {
+	try {
+		await Category.destroy({
+			where: {
+				id: req.params.id,
+			},
+		});
+		return res.json({ success: true, data: "Successfully Deleted Category" });
+	} catch (error) {
+		logError("DELETE Category", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 
 module.exports = {
 	getAllCategories,
