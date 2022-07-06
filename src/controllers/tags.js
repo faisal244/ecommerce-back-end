@@ -61,7 +61,22 @@ const updateTag = async (req, res) => {
 	}
 };
 
-const deleteTag = async (req, res) => {};
+// delete tag function
+const deleteTag = async (req, res) => {
+	try {
+		await Tag.destroy({
+			where: {
+				id: req.params.id,
+			},
+		});
+		return res.json({ success: true, data: "Successfully Deleted Tag" });
+	} catch (error) {
+		logError("DELETE Tag", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
 
 module.exports = {
 	getAllTags,
