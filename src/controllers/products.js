@@ -1,0 +1,123 @@
+const { Product, ProductTag } = require("../models");
+
+// get all products
+const getAllProducts = async (req, res) => {
+	try {
+		const data = await Product.findAll();
+		return res.json({ success: true, data });
+	} catch (err) {
+		res.json("GET Products", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
+
+// Get a single product by ID
+const getProductById = async (req, res) => {
+	try {
+		const data = await Product.findByPk(req.params.id);
+		if (data) {
+			return res.json({ success: true, data });
+		}
+		return res
+			.status(404)
+			.json({ success: false, error: "Product does not exist" });
+	} catch (err) {
+		logError("GET Products", err.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
+
+// Create a new product
+const createProduct = async (req, res) => {
+	Product.create(req.body)
+		.then((product) => {
+			// if there's product tags, we need to create pairings to bulk create in the ProductTag model
+			if (req.body.tagIds.length) {
+				const productTagIdArr = req.body.tagIds.map((tag_id) => {
+					return {
+						product_id: product.id,
+						tag_id,
+					};
+				});
+				return ProductTag.bulkCreate(productTagIdArr);
+			}
+			// if no product tags, just respond
+			res.status(200).json(product);
+		})
+		.then((productTagIds) => res.status(200).json(productTagIds))
+		.catch((err) => {
+			console.log(err);
+			res.status(400).json(err);
+		});
+};
+
+// Update a single product
+const updateProduct = async (req, res) => {
+	// update product data
+	await Product.update(req.body, {
+		where: {
+			id: req.params.id,
+		},
+	})
+		.then((product) => {
+			// find all associated tags from ProductTag
+			return ProductTag.findAll({ where: { product_id: req.params.id } });
+		})
+		.then((productTags) => {
+			// get list of current tag_ids
+			const productTagIds = productTags.map(({ tag_id }) => tag_id);
+			// create filtered list of new tag_ids
+			const newProductTags = req.body.tagIds
+				.filter((tag_id) => !productTagIds.includes(tag_id))
+				.map((tag_id) => {
+					return {
+						product_id: req.params.id,
+						tag_id,
+					};
+				});
+			// figure out which ones to remove
+			const productTagsToRemove = productTags
+				.filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
+				.map(({ id }) => id);
+
+			// run both actions
+			return Promise.all([
+				ProductTag.destroy({ where: { id: productTagsToRemove } }),
+				ProductTag.bulkCreate(newProductTags),
+			]);
+		})
+		.then((updatedProductTags) => res.json(updatedProductTags))
+		.catch((err) => {
+			// console.log(err);
+			res.status(400).json(err);
+		});
+};
+
+// Delete a single product
+const deleteProduct = async (req, res) => {
+	try {
+		await Product.destroy({
+			where: {
+				id: req.params.id,
+			},
+		});
+		return res.json({ success: true, data: "Successfully Deleted Product" });
+	} catch (error) {
+		logError("DELETE Product", error.message);
+		return res
+			.status(500)
+			.json({ success: false, error: "Failed to send response" });
+	}
+};
+
+module.exports = {
+	getAllProducts,
+	getProductById,
+	createProduct,
+	updateProduct,
+	deleteProduct,
+};
