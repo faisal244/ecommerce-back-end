@@ -1,6 +1,6 @@
 const { Tag } = require("../models");
 
-// get all tags
+// Get all tags
 const getAllTags = async (req, res) => {
 	try {
 		const data = await Tag.findAll();
@@ -13,7 +13,7 @@ const getAllTags = async (req, res) => {
 	}
 };
 
-// get tag by ID function
+// Get a single tag by ID
 const getTagById = async (req, res) => {
 	try {
 		const data = await Tag.findByPk(req.params.id);
@@ -31,7 +31,7 @@ const getTagById = async (req, res) => {
 	}
 };
 
-// create tag function
+// Create a tag function
 const createTag = async (req, res) => {
 	try {
 		await Tag.create(req.body);
@@ -44,7 +44,7 @@ const createTag = async (req, res) => {
 	}
 };
 
-// update tag function
+// Update a tag function
 const updateTag = async (req, res) => {
 	try {
 		await Tag.update(req.body, {
@@ -61,7 +61,7 @@ const updateTag = async (req, res) => {
 	}
 };
 
-// delete tag function
+// Delete a tag function
 const deleteTag = async (req, res) => {
 	try {
 		await Tag.destroy({

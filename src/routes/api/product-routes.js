@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { Product, Category, Tag, ProductTag } = require("../../models");
 
 const {
 	getAllProducts,
@@ -15,32 +14,17 @@ const router = Router();
 
 // get all products
 router.get("/", getAllProducts);
-// find all products
-// be sure to include its associated Category and Tag data
 
-// get one product
+// get one product - find a single product by its `id`
 router.get("/:id", getProductById);
-// find a single product by its `id`
-
-// be sure to include its associated Category and Tag data
 
 // create new product
 router.post("/", createProduct);
-/* req.body should look like this...
-    {
-      "product_name": "BIG SHINEY Basketball",
-      "price": "200.00",
-      "stock": 300,
-      "tagIds": 3,
-      "category_id": 3
-    }
-  */
 
 // update product
 router.put("/:id", updateProduct);
 
 router.delete("/:id", deleteProduct);
-	// delete one product by its `id` value
-
+// delete one product by its `id` value
 
 module.exports = router;

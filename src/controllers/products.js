@@ -13,6 +13,7 @@ const getAllProducts = async (req, res) => {
 	}
 };
 
+// Get a single product by ID
 const getProductById = async (req, res) => {
 	try {
 		const data = await Product.findByPk(req.params.id);
@@ -30,6 +31,7 @@ const getProductById = async (req, res) => {
 	}
 };
 
+// Create a new product
 const createProduct = async (req, res) => {
 	Product.create(req.body)
 		.then((product) => {
@@ -53,6 +55,7 @@ const createProduct = async (req, res) => {
 		});
 };
 
+// Update a single product
 const updateProduct = async (req, res) => {
 	// update product data
 	await Product.update(req.body, {
@@ -94,6 +97,7 @@ const updateProduct = async (req, res) => {
 		});
 };
 
+// Delete a single product
 const deleteProduct = async (req, res) => {
 	try {
 		await Product.destroy({
@@ -109,6 +113,7 @@ const deleteProduct = async (req, res) => {
 			.json({ success: false, error: "Failed to send response" });
 	}
 };
+
 module.exports = {
 	getAllProducts,
 	getProductById,

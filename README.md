@@ -167,9 +167,9 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete data in my database
 ```
 
-## Video Demos
+## Video Demo
 
-The following videos show an example of the application being used from the command line - Please to view the demo or click on the thumbnail below:
+The following walkthrough videos show initial setup and the POST, PUT, and DELETE routes for products, categories and tags being tested in Postman:
 
 [01 - Start Up - Sourcing schema, seeding database, starting application](https://drive.google.com/file/d/1HlMC5jrlXe0PlGayWbChywq42zh-fPrl/view?usp=sharing)
 
@@ -194,8 +194,6 @@ The following animation shows the application's GET routes to return a single ca
 The following animation shows the application's POST, PUT, and DELETE routes for categories being tested in Insomnia:
 
 ![In Insomnia, the user tests “DELETE Category by ID,” “CREATE Category,” and “UPDATE Category.”](./Assets/13-orm-homework-demo-03.gif)
-
-Your walkthrough video should also show the POST, PUT, and DELETE routes for products and tags being tested in Insomnia.
 
 ## Installation
 
@@ -265,52 +263,3 @@ npm run start
 - [NPM] Mysql2
 
 ---
-
-<!--
-## Grading Requirements
-
-
-
-### Walkthrough Video: 37%
-
-- A walkthrough video that demonstrates the functionality of the e-commerce back end must be submitted, and a link to the video should be included in your readme file.
-
-- The walkthrough video must show all of the technical acceptance criteria being met.
-
-- The walkthrough video must demonstrate how to create the schema from the MySQL shell.
-
-- The walkthrough video must demonstrate how to seed the database from the command line.
-
-- The walkthrough video must demonstrate how to start the application’s server.
-
-- The walkthrough video must demonstrate GET routes for all categories, all products, and all tags being tested in Insomnia.
-
-- The walkthrough video must demonstrate GET routes for a single category, a single product, and a single tag being tested in Insomnia.
-
-- The walkthrough video must demonstrate POST, PUT, and DELETE routes for categories, products, and tags being tested in Insomnia.
-
-### Technical Acceptance Criteria: 40%
-
-- Satisfies all of the preceding acceptance criteria plus the following:
-
-  - Connects to a MySQL database using the [MySQL2](https://www.npmjs.com/package/mysql) and [Sequelize](https://www.npmjs.com/package/sequelize) packages.
-
-  - Stores sensitive data, like a user’s MySQL username, password, and database name, using environment variables through the [dotenv](https://www.npmjs.com/package/dotenv) package.
-
-  - Syncs Sequelize models to a MySQL database on the server start.
-
-  - Includes column definitions for all four models outlined in the Challenge instructions.
-
-  - Includes model associations outlined in the Challenge instructions.
-
-
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-- A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
-
-- The URL of the GitHub repository. Give the repository a unique name and include a readme describing the project.
-
---- -->

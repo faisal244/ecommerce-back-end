@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { Category, Product } = require("../../models");
 
 const {
 	getAllCategories,
@@ -11,22 +10,19 @@ const {
 
 // The `/api/categories` endpoint
 
-router.get("/", getAllCategories);
 // find all categories
-// be sure to include its associated Products
-// add try catch statements to each
+router.get("/", getAllCategories);
 
-router.get("/:id", getCategoryById);
 // find one category by its `id` value
-// be sure to include its associated Products
+router.get("/:id", getCategoryById);
 
-router.post("/", createNewCategory);
 // create a new category
+router.post("/", createNewCategory);
 
-router.put("/:id", updateCategory);
 // update a category by its `id` value
+router.put("/:id", updateCategory);
 
-router.delete("/:id", deleteCategory);
 // delete a category by its `id` value
+router.delete("/:id", deleteCategory);
 
 module.exports = router;
