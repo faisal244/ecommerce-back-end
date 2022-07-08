@@ -167,9 +167,19 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete data in my database
 ```
 
-## Video Demo
+## Video Demos
 
-The following video shows an example of the application being used from the command line - Please [click here](https://) to view the demo or click on the thumbnail below:
+The following videos show an example of the application being used from the command line - Please to view the demo or click on the thumbnail below:
+
+[01 - Start Up - Sourcing schema, seeding database, starting application](https://drive.google.com/file/d/1HlMC5jrlXe0PlGayWbChywq42zh-fPrl/view?usp=sharing)
+
+[02 - GET requests](https://drive.google.com/file/d/1FGiTsXqLJ0FB6sXnmsQLqyADNmYGZxYa/view?usp=sharing)
+
+[03 - POST requests](https://drive.google.com/file/d/1dtIrZQGxSKtC_dvrbjj_E0wajwH-4ADj/view?usp=sharing)
+
+[04 - PUT requests](https://drive.google.com/file/d/1t3Nb7-qjjzseKOuPSvu0EZWk8g58h7kO/view?usp=sharing)
+
+[05 - DELETE requests](https://drive.google.com/file/d/1fXjEss65bC_y3zXAV3Sx4RlmFlvjwo_5/view?usp=sharing)
 
 ## Screenshots
 

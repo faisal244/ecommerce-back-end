@@ -55,7 +55,7 @@ const updateCategory = async (req, res) => {
 				id: req.params.id,
 			},
 		});
-		return res.json({ success: true, data: "Successfully Update Category" });
+		return res.json({ success: true, data: "Successfully Updated Category" });
 	} catch (error) {
 		logError("UPDATE Category", error.message);
 		return res

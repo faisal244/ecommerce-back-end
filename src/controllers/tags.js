@@ -52,7 +52,7 @@ const updateTag = async (req, res) => {
 				id: req.params.id,
 			},
 		});
-		return res.json({ success: true, data: "Successfully Update Tag" });
+		return res.json({ success: true, data: "Successfully Updated Tag" });
 	} catch (error) {
 		logError("UPDATE Tag", error.message);
 		return res
